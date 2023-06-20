@@ -4,8 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="icon" type="image/x-icon" href="images/clouds.png" />
-        <title> Weather </title>
+        <link rel="icon" type="image/x-icon" href="images/pen.png" />
         <title>To - Do List</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,23 +12,33 @@
     </head>
     <body>
         <section class="create-section">
-            <!--<div>
-                <title>
-                <input>
-                <textarea></textarea>
-                <button></button>
-            </div>-->
+            <form class="create-form">
+                <h1>To Do It</h1>
+                <input type="text" class="create-input" placeholder="Write the title">
+
+                <textarea class="create-description" type="text" placeholder="Write the description" rows="4" cols="10"></textarea>
+
+                <button class="create-button" type="submit"><img src="images/pen.png"></button>
+
+            </form>
         </section>
 
         <section class="task-wrapper">
-            <ul class="task-container">
+            <ul class="task-list">
+
                 <!--<div>
-                    <input>
-                    <textarea></textarea>
-                    <button></button>
-                    <button></button>
-                    <button></button>
+                    <div>
+                        <input>
+                        <textarea></textarea>
+                        <button></button>
+                    </div>
+                    <div>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </div>
+                    
                 </div>-->
+
             </ul>
         </section>
 

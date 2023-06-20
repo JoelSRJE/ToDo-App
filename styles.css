@@ -9,12 +9,19 @@ body {
     background: #2b523f;
 }
 
+/* Start: Create section */
+
 .create-section {
     display: flex;
     max-width: auto;
     margin: auto;
     padding: 20px 20px;
     border-bottom: 2px solid red;
+}
+
+
+.create-form h1 {
+    text-align: center;
 }
 
 .create-form {
@@ -69,3 +76,10 @@ body {
     height: 3em;
 }
 
+/* Slut: Create section */
+
+/* Start: Created cards*/
+
+
+
+/* Slut: Created cards */
