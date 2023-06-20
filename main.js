@@ -25,6 +25,9 @@ const userDescription = document.querySelector(".create-description");
 // Give the cards unique ID, starting from 1.
 let creationCount = 1;
 
+// Places stuff in array
+const todoArray = [];
+
 // Addeventlistener for the form
 form.addEventListener("submit", (e) => {
      e.preventDefault();
@@ -32,48 +35,75 @@ form.addEventListener("submit", (e) => {
      const input = userInput.value;
      const description = userDescription.value;
 
-     const todo_card = document.createElement("div");
-     todo_card.classList.add("created-card")
-     todo_card.setAttribute("Id", creationCount)
+     const card = document.createElement("div");
+     card.classList.add("created-card")
+     card.setAttribute("Id", creationCount)
      creationCount++;
 
-     const todo_container = document.createElement("div");
-     todo_container.classList.add("card-content")
-     todo_card.appendChild(todo_container);
+     const container = document.createElement("div");
+     container.classList.add("card-content")
+     card.appendChild(container);
 
      // The users title of the task.
-     const todo_input = document.createElement("input");
-     todo_input.classList.add("created-input");
-     todo_input.type = "text";
-     todo_input.value = input;
-     todo_input.setAttribute("readonly", "readonly");
-     todo_container.appendChild(todo_input);
+     const card_input = document.createElement("input");
+     card_input.classList.add("created-input");
+     card_input.type = "text";
+     card_input.value = input;
+     card_input.setAttribute("readonly", "readonly");
+     container.appendChild(card_input);
 
      // The users description of the task.
-     const todo_description = document.createElement("textarea");
-     todo_description.classList.add("created-description");
-     todo_description.value = description;
-     todo_description.setAttribute("readonly", "readonly");
-     todo_container.appendChild(todo_description);
-
-     // Button to hightlight that the task is done.
-     const todo_done_button = document.createElement("button");
-     todo_done_button.classList.add("done-btn")
-     todo_container.appendChild(todo_done_button);
+     const card_description = document.createElement("textarea");
+     card_description.classList.add("created-description");
+     card_description.value = description;
+     card_description.setAttribute("readonly", "readonly");
+     container.appendChild(card_description);
 
      // Div to easier control the actions of the buttons below.
-     const todo_actions = document.createElement("div");
-     todo_actions.classList.add("actions");
-     todo_card.appendChild(todo_actions);
+     const actions = document.createElement("div");
+     actions.classList.add("actions");
+     card.appendChild(actions);
+
+    // Button to hightlight that the task is done.
+     const done_button = document.createElement("button");
+     done_button.classList.add("done-btn");
+     done_button.innerHTML = "<img src= images/check.png>";
+     actions.appendChild(done_button);
 
      // Buttons to edit / delete the tasks within the list.
-     const todo_edit_button = document.createElement("button");
-     todo_edit_button.classList.add("edit-btn");
-     todo_actions.appendChild(todo_edit_button);
+     const edit_button = document.createElement("button");
+     edit_button.classList.add("edit-btn");
+     edit_button.innerHTML = "<img src= images/edit.png>";
+     actions.appendChild(edit_button);
 
-     const todo_delete_button = document.createElement("button");
-     todo_delete_button.classList.add("delete-btn");
-     todo_actions.appendChild(todo_delete_button);
+
+     const delete_button = document.createElement("button");
+     delete_button.classList.add("delete-btn");
+     delete_button.innerHTML = "<img src= images/delete.png>"
+     actions.appendChild(delete_button);
         
-     list.appendChild(todo_card);
+     list.appendChild(card);
+
+     edit_button.addEventListener("click", (e) => {
+          if ( edit_button.classList == "edit-btn" ) {
+               edit_button.innerHTML = "<img src= images/save.png>";
+               edit_button.classList.add("changed")
+               input.removeAttribute("readonly");
+               description.removeAttribute("readonly");
+          } else {
+               edit_button.classList.remove("changed");
+               edit_button.innerHTML = "<img src= images/edit.png>";
+               input.setAttribute("readonly", "readonly");
+               description.setAttribute("readonly", "readonly");
+          }
+     })
+
+     delete_button.addEventListener("click", () => {
+          list.removeChild(card);
+     });
+
+     // To see that everything works, will remove
+     todoArray.push("submit")
+     console.log(todoArray)
+     console.log("Signal is going through")
 });
