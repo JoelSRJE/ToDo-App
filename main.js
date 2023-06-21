@@ -1,19 +1,19 @@
 /* 
 Du ska i denna uppgift bygga en todoapp. Appen ska byggas med HTML & CSS, tillsammans med JavaScript för att hantera de dynamiska värdena. Följande funktionalitet måste implementeras:
 
-Skapa todo med titel och beskrivning  <!--Check-->
-Lista upp färdiga- och ofärdiga todos <!--Check-->
-Avklara todo (check av) <!--Check-->
-Ta bort todo <!--Check-->
+Skapa todo med titel och beskrivning  <!-- Check -->
+Lista upp färdiga- och ofärdiga todos <!-- Check -->
+Avklara todo (check av) <!-- Check -->
+Ta bort todo <!-- Check -->
 
 En Todo ska minst bestå av
-Titel <!--Check-->
-Beskrivning <!--Check-->
-Avklarad (boolean) 
-Skapad datum
-Avklarad datum
+Titel <!-- Check -->
+Beskrivning <!-- Check -->
+Avklarad (boolean) <!-- Håller på -->
+Skapad datum <!-- Check -->
+Avklarad datum <!-- Check -->
 
-Om du går för VG och använder dummyjson API:et så använder du deras todo objekt-struktur.
+Om du går för VG och använder dummyjson API:et så använder du deras todo objekt-struktur. <!-- Att göra -->
 */
 
 //Documented Object Model after the creation-function
@@ -28,18 +28,29 @@ const done_list = document.createElement("ul");
 done_list.classList.add("done-list")
 listWrap.appendChild(done_list);
 
-const doneTodos = [];
-
 // Give the cards unique ID, starting from 1.
-let cardCount = 1;
+let cardCount = 0;
 
-// Places stuff in array
+// Places stuff in array & saves locally
 const todoArray = [];
+localStorage.todoArray = JSON.stringify()
+
+// Started to try out classes
+class Do {
+     constructor (id, title, description, created, completed) {
+     this.id = cardCount;
+     this.title = userInput.value;
+     this.description = userDescription.value,
+     this.created = getDate();
+     this.completed = status || false;
+     }
+};
 
 // Addeventlistener for the form
 form.addEventListener("submit", (e) => {
      e.preventDefault();
-     
+     let createdCard = new Do();
+
      const input = userInput.value;
      const description = userDescription.value;
 
@@ -51,6 +62,12 @@ form.addEventListener("submit", (e) => {
      const container = document.createElement("div");
      container.classList.add("card-content")
      card.appendChild(container);
+
+     // Displays the ID of each card.
+     const id_p = document.createElement("p");
+     id_p.classList.add("id-nr");
+     id_p.innerText = `# ${cardCount}`;
+     container.appendChild(id_p);
 
      // The users title of the task.
      const card_input = document.createElement("input");
@@ -115,7 +132,7 @@ form.addEventListener("submit", (e) => {
      completed_container.appendChild(completed_stamp);
 
      /* I could recreate the time_stamp_date to print it out as well
-     but decided not to. Make it less cluttered with info.
+     but decided not to. Makes the cards less cluttered with info.
      */
 
      list.appendChild(card);
@@ -149,11 +166,17 @@ form.addEventListener("submit", (e) => {
 
      delete_button.addEventListener("click", () => {
           list.removeChild(card);
-          todoArray.remove(card)
+
+          //Removes the exact card you press via the ID that generates.
+          let cardIndex = this.id;
+          todoArray.splice(cardIndex, 1)
+          console.clear();
+          console.log("Removed previous logs to clean up");
+          console.log(todoArray)
      });
 
      // To see that everything works, will remove
-     todoArray.push(card)
+     todoArray.push(createdCard)
      console.log(todoArray)
      console.log("Signal is going through")
 });     

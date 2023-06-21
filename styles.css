@@ -136,6 +136,11 @@ body {
     flex-direction: column;
 }
 
+.id-nr {
+    font-size: 0.9em;
+    color: silver;
+}
+
 .created-input {
     border: none;
     outline: none;
