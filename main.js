@@ -17,42 +17,46 @@ Om du går för VG och använder dummyjson API:et så använder du deras todo ob
 */
 
 //Documented Object Model after the creation-function
-const form = document.querySelector(".create-form")
 const list = document.querySelector(".task-list")
 const userInput = document.querySelector(".create-input");
 const userDescription = document.querySelector(".create-description");
 const listWrap = document.querySelector(".list-wrapper");
+const createYO = document.querySelector(".create-button")
+const createRandom = document.querySelector(".random-btn")
 
-// Creates a list for the cards that are done
-const done_list = document.createElement("ul");
-done_list.classList.add("done-list")
-listWrap.appendChild(done_list);
+
+
+// Places stuff in array & saves locally
+let todoArray = [];
+
+// API URLS
+let randomToDoUrl = `https://dummyjson.com/todos/random`;
+let addUrl = `https://dummyjson.com/todos/add`;
+
+// Started to try out classes
+class theDos {
+     constructor (id, title, description, created, completed, verify) {
+     this.id = cardCount;
+     this.title = userInput.value;
+     this.description = userDescription.value,
+     this.created = getDate() + " kl: "+ getTime();
+     this.completed = verify || false;
+     this.userId = cardCount;
+     }
+};
 
 // Give the cards unique ID, starting from 1.
 let cardCount = 0;
 
-// Places stuff in array & saves locally
-const todoArray = [];
-localStorage.todoArray = JSON.stringify()
+// Creates tasks
+function createTask(click) {
 
-// Started to try out classes
-class Do {
-     constructor (id, title, description, created, completed) {
-     this.id = cardCount;
-     this.title = userInput.value;
-     this.description = userDescription.value,
-     this.created = getDate();
-     this.completed = status || false;
-     }
-};
+     
+     let createdCard = new theDos();
 
-// Addeventlistener for the form
-form.addEventListener("submit", (e) => {
-     e.preventDefault();
-     let createdCard = new Do();
-
-     const input = userInput.value;
-     const description = userDescription.value;
+     let input = userInput.value;
+     let description = userDescription.value;
+     
 
      const card = document.createElement("div");
      card.classList.add("created-card")
@@ -146,7 +150,7 @@ form.addEventListener("submit", (e) => {
           } else {
                card.classList.remove("done");
                done_button.classList.remove("toggle-btn-color")   
-               card.removeChild(completed_container);      
+               card.removeChild(completed_container);   
           }
      });
 
@@ -156,6 +160,7 @@ form.addEventListener("submit", (e) => {
                edit_button.classList.add("changed")
                card_input.removeAttribute("readonly");
                card_description.removeAttribute("readonly");
+
           } else {
                edit_button.classList.remove("changed");
                edit_button.innerHTML = "<img src= images/edit.png>";
@@ -179,8 +184,9 @@ form.addEventListener("submit", (e) => {
      todoArray.push(createdCard)
      console.log(todoArray)
      console.log("Signal is going through")
-});     
+}  
 
+// Gets the date
 function getDate() {
      let date = new Date();
      let today = date.getDate();
@@ -192,6 +198,7 @@ function getDate() {
      return currentDate;
 }
 
+// Gets the time of the day
 function getTime() {
      let time = new Date();
      let hour = time.getHours();
@@ -206,3 +213,13 @@ function getTime() {
 
      return clock;
 }
+
+createYO.addEventListener("click", (e) => {
+     e.preventDefault();
+     createTask();
+});
+
+createRandom.addEventListener("click", (e) => {
+     e.preventDefault();
+     // Will add
+})
