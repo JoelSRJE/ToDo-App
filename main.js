@@ -1,47 +1,22 @@
-/* 
-Du ska i denna uppgift bygga en todoapp. Appen ska byggas med HTML & CSS, tillsammans med JavaScript för att hantera de dynamiska värdena. Följande funktionalitet måste implementeras:
 
-Skapa todo med titel och beskrivning  <!-- Check -->
-Lista upp färdiga- och ofärdiga todos <!-- Check -->
-Avklara todo (check av) <!-- Check -->
-Ta bort todo <!-- Check -->
-
-En Todo ska minst bestå av
-Titel <!-- Check -->
-Beskrivning <!-- Check -->
-Avklarad (boolean) <!-- Håller på -->
-Skapad datum <!-- Check -->
-Avklarad datum <!-- Check -->
-
-Om du går för VG och använder dummyjson API:et så använder du deras todo objekt-struktur. <!-- Att göra -->
-*/
-
-//Documented Object Model after the creation-function
+//Documented Object Model
 const list = document.querySelector(".task-list")
-const userInput = document.querySelector(".create-input");
-const userDescription = document.querySelector(".create-description");
+let userInput = document.querySelector(".create-input");
+let userDescription = document.querySelector(".create-description");
 const listWrap = document.querySelector(".list-wrapper");
-const createYO = document.querySelector(".create-button")
-const createRandom = document.querySelector(".random-btn")
+const createBtn = document.querySelector(".create-button")
 
 
-
-// Places stuff in array & saves locally
+// Want to implement localstorage in future.
+// Places stuff in array
 let todoArray = [];
 
-// API URLS
-let randomToDoUrl = `https://dummyjson.com/todos/random`;
-let addUrl = `https://dummyjson.com/todos/add`;
 
-// Started to try out classes
+// Started to try out classes, decided on just ID. 
+// Want to do more with it but time ran out.
 class theDos {
-     constructor (id, title, description, created, completed, verify) {
+     constructor (id) {
      this.id = cardCount;
-     this.title = userInput.value;
-     this.description = userDescription.value,
-     this.created = getDate() + " kl: "+ getTime();
-     this.completed = verify || false;
-     this.userId = cardCount;
      }
 };
 
@@ -49,15 +24,13 @@ class theDos {
 let cardCount = 0;
 
 // Creates tasks
-function createTask(click) {
+function createTask() {
 
-     
      let createdCard = new theDos();
 
      let input = userInput.value;
      let description = userDescription.value;
      
-
      const card = document.createElement("div");
      card.classList.add("created-card")
      card.setAttribute("Id", cardCount)
@@ -153,14 +126,14 @@ function createTask(click) {
                card.removeChild(completed_container);   
           }
      });
-
+     
+     // Makes it so that you can edit the textarea and input field.
      edit_button.addEventListener("click", (e) => {
           if ( edit_button.classList == "edit-btn" ) {
                edit_button.innerHTML = "<img src= images/save.png>";
                edit_button.classList.add("changed")
                card_input.removeAttribute("readonly");
                card_description.removeAttribute("readonly");
-
           } else {
                edit_button.classList.remove("changed");
                edit_button.innerHTML = "<img src= images/edit.png>";
@@ -168,10 +141,10 @@ function createTask(click) {
                card_description.setAttribute("readonly", "readonly");
           }
      })
-
+     
+     // Deletes the task from the list.
      delete_button.addEventListener("click", () => {
           list.removeChild(card);
-
           //Removes the exact card you press via the ID that generates.
           let cardIndex = this.id;
           todoArray.splice(cardIndex, 1)
@@ -180,10 +153,8 @@ function createTask(click) {
           console.log(todoArray)
      });
 
-     // To see that everything works, will remove
-     todoArray.push(createdCard)
-     console.log(todoArray)
-     console.log("Signal is going through")
+     todoArray.push(createdCard);
+     console.log("Signal is going through");
 }  
 
 // Gets the date
@@ -214,12 +185,8 @@ function getTime() {
      return clock;
 }
 
-createYO.addEventListener("click", (e) => {
+// Creates a task on click
+createBtn.addEventListener("click", (e) => {
      e.preventDefault();
      createTask();
 });
-
-createRandom.addEventListener("click", (e) => {
-     e.preventDefault();
-     // Will add
-})

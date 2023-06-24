@@ -6,26 +6,22 @@
 }
 
 body {
-    height: 100vh;
-    background: white;
-    /*
-    background: linear-gradient(135deg, rgb(14, 15, 17) 6.8%, #2b523f 240%);
+    height: auto;
+    background: linear-gradient(135deg, #C4DFDF, #347254 240%);
     background-repeat: no-repeat;
-    */
 }
 
 /* Start: Create section */
 
 .create-section {
     display: flex;
-    max-width: auto;
     margin: auto;
     padding: 20px 20px;
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid rgb(48, 48, 48);
 }
 
 .page-title {
-    background-image: linear-gradient(to right, #353b38, #c0c0c0, #63977e);
+    background-image: linear-gradient(to right, #C4DFDF, #c0c0c0, #347254 240%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -33,22 +29,14 @@ body {
     font-size: 3em;
 }
 
-.page-title-undertext {
-    background-image: linear-gradient(to right, #353b38, #c0c0c0, #63977e);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 1em;
-    align-self: center;
-}
-
 .create-container{
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 20em;
+    margin-top: 4em;
     border-radius: 20px;
-    border: 2px solid red;
+    background: #F8F6F4;
+    padding: 0px 0px 4px 0px;
 }
 
 .create-title {
@@ -67,7 +55,7 @@ body {
     height: 3em;
     margin-right: 16px;
     font-size: 1.4em;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid #cbdfdf;
 }
 
 .create-description {
@@ -89,7 +77,7 @@ body {
     justify-content: space-evenly;
 }
 
-.create-button, .random-btn {
+.create-button {
     height: 3em;
     width: 3em;
     background: none;
@@ -98,7 +86,7 @@ body {
     cursor: pointer;
 }
 
-.create-button img, .random-btn img {
+.create-button img {
     width: 3em;
     height: 3em;
 }
@@ -108,8 +96,14 @@ body {
 /* Start: list-wrapper */
 
 .list-wrapper {
+    background: linear-gradient(135deg, #C4DFDF, #347254 240%);
     display: flex;
     flex-direction: column;
+}
+
+.task-list {
+    display: flex;
+    justify-content: center;
 }
 
 /* Slut: list-wrapper */
@@ -128,8 +122,8 @@ body {
     height: 14em;
     width: 12em;
     padding: 0.5em 1em 14px 0.5em;
-    border: 2px solid blue;
-    background-color: white;
+    background-color: #F8F6F4;
+    border-radius: 5px;
 }
 
 .done {
@@ -156,6 +150,7 @@ body {
     font-size: 1.4em;
     flex: 1;
     border-bottom: 2px solid silver;
+    color: rgb(134, 133, 133);
 }
 
 .created-description {
@@ -167,7 +162,7 @@ body {
     height: 6em;
     font-size: 1em;
     margin-top: 0.5em;
-    color: darkblue;
+    color: rgb(151, 151, 151);
 }
 
 .time-container {
